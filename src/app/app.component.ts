@@ -17,9 +17,19 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'List',
-      url: '/list',
-      icon: 'list'
+      title: 'Account',
+      url: '/account',
+      icon: 'home'
+    },
+    {
+      title: 'Create Patient',
+      url: '/createpatient',
+      icon: 'home'
+    },
+    {
+      title: 'Create Questions',
+      url: '/createquestion',
+      icon: 'home'
     }
   ];
 

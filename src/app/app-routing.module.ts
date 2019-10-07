@@ -11,11 +11,18 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
+  { 
+    path: 'account',
+    loadChildren: () => import('./account/account.module').then(m => m.AccountPageModule)
+  },
   {
-    path: 'list',
-    loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
-  }
-];
+    path: 'createpatient',
+    loadChildren: () => import('./createpatient/createpatient.module').then(m => m.CreatepatientPageModule)
+  },
+  { 
+    path: 'createquestion',
+    loadChildren: () => import('./createquestion/createquestion.module').then(m => m.CreatequestionPageModule)
+}];
 
 @NgModule({
   imports: [
