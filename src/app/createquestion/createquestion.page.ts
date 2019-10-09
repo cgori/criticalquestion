@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PatientService } from '../patient.service';
 
 @Component({
   selector: 'app-createquestion',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreatequestionPage implements OnInit {
 
-  constructor() { }
+  constructor(private patientService : PatientService) { }
 
   ngOnInit() {
+    this.patientService.getAllPatients
   }
 
 }

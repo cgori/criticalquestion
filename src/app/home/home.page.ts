@@ -10,7 +10,8 @@ export class HomePage implements OnInit  {
   private answers = [];
 
 
-  public questions: Array<{ questionId: string; Question: string; status: string; patientId: String; answers: Array<String> }> = [];
+  public questions: Array<{ questionId: string; Question: string; status: string;
+     patientId: String; answers: Array<String> }> = [];
   constructor() {
     }
 
