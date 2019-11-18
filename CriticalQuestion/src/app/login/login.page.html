@@ -6,25 +6,48 @@
 
 
 <ion-content  color="secondary">
-
+   
     <ion-grid style = "height: 80%;"size-md="6" size-lg="5" size-xs="12">
-      <ion-row color="secondary" justify-content-center align-items-center style="height: 100%">
-        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-          <div text-center>
-           
-          </div>
+      <ion-row color="secondary" class="ion-align-items-start">
+        <ion-col class="ion-justify-content-center">
+            <div class = "loginLogo" >
+                <img class="title-image" src="../../assets/lock.svg" width="100px" height="100px" />
+                </div>
+          <ion-title class ="ion-text-center">
+            <i> Login to your account </i>
+          </ion-title>
           <div padding>
-
+             <div class = "input">
+               <div class="input1">
+            <ion-item color="secondary" lines = "none">
+              <ion-text>
+                Username
+              </ion-text>
+            </ion-item>
+           
+            <div class= "input1">
             <ion-item class = "roundedInput">
               <ion-input name="email" type="email" placeholder="your@email.com" [(ngModel)]="credentials.email"></ion-input>
             </ion-item>
+          </div>
+            </div>
+          </div>
+          <div class="input">
+            <div class="input1">
+            <ion-item color="secondary" lines = "none" class="item1">
+                <ion-text>
+                  Password
+                </ion-text>
+              </ion-item>
             <ion-item class = "roundedInput">
-              <ion-input name="password" type="password" placeholder="Password" [(ngModel)]="credentials.pw"></ion-input>
+              <ion-input name="password" type="password" placeholder="Password" [(ngModel)]="credentials.pw" ></ion-input>
             </ion-item>
+            </div>
+          </div>
           </div>
          
-            <div class = "loginButton">
-              <ion-button (click)="login()" expand="block" color="primary" class = "button">Login</ion-button>
+            <div class = "loginButton" >
+              <ion-button (click)="login()" expand="block" color="primary" class = "button" >Login</ion-button>
               </div>
        
         </ion-col>

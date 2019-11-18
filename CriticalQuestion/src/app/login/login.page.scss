@@ -8,15 +8,38 @@
     padding-bottom: 15px;
     
     
+    
+    
    }
-
+.input-wrapper{
+    text-align: center;
+    padding:0px;
+}
+   
 .form{
     width:70%;
 }
-
-.loginButton{
+.inputContainer{
     display: flex;
   align-items: center;
   justify-content: center;
     width:100%;
+}
+.input{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+      width:100%;  
+}
+
+
+.loginLogo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:100%;
+    padding-bottom: 20px;
+}
+ion-button{
+    width:80%;
 }
