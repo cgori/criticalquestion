@@ -1,56 +1,38 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-
-<ion-content  color="secondary">
-   
-    <ion-grid style = "height: 80%;"size-md="6" size-lg="5" size-xs="12">
-      <ion-row color="secondary" class="ion-align-items-start">
-        <ion-col class="ion-justify-content-center">
-            <div class = "loginLogo" >
-                <img class="title-image" src="../../assets/lock.svg" width="100px" height="100px" />
-                </div>
-          <ion-title class ="ion-text-center">
-            <i> Login to your account </i>
-          </ion-title>
-          <div padding>
-             <div class = "input">
-               <div class="input1">
-            <ion-item color="secondary" lines = "none">
-              <ion-text>
-                Username
-              </ion-text>
-            </ion-item>
-           
-            <div class= "input1">
-            <ion-item class = "roundedInput">
-              <ion-input name="email" type="email" placeholder="your@email.com" [(ngModel)]="credentials.email"></ion-input>
-            </ion-item>
-          </div>
-            </div>
-          </div>
-          <div class="input">
-            <div class="input1">
-            <ion-item color="secondary" lines = "none" class="item1">
-                <ion-text>
-                  Password
-                </ion-text>
-              </ion-item>
-            <ion-item class = "roundedInput">
-              <ion-input name="password" type="password" placeholder="Password" [(ngModel)]="credentials.pw" ></ion-input>
-            </ion-item>
-            </div>
-          </div>
-          </div>
-         
-            <div class = "loginButton" >
-              <ion-button (click)="login()" expand="block" color="primary" class = "button" >Login</ion-button>
-              </div>
-       
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+<ion-content>
+  <ion-grid style="width:70%;"> 
+<!-- Header content -->
+  <ion-row class="ion-text-center">
+      <ion-col size="12">
+          <img class="title-image" src="../../assets/lock.svg" width="100px" height="100px" />
+      </ion-col>
+      <ion-col>
+        <ion-title>
+          <div class="ion-text-center">Login</div>
+        </ion-title>
+      </ion-col>
+    </ion-row>
+<!-- Input form row -->
+  <ion-row >
+    <ion-col size="12"> 
+        <ion-col><ion-text>Email</ion-text></ion-col>
+          <ion-item class = inputStyle>
+          <ion-input name="email" type="email" placeholder="your@email.com" [(ngModel)]="credentials.email" ></ion-input>
+         </ion-item>
+      </ion-col>
+    
+    <ion-col size="12" >
+        <ion-col><ion-text class="ion-text-left">Password</ion-text></ion-col>
+        <ion-item class = inputStyle>
+            <ion-input name="password" type="password" placeholder="Password" [(ngModel)]="credentials.pw" ></ion-input>
+        </ion-item>
+    </ion-col>
+  </ion-row>
+<!-- Button row -->
+  <ion-row>
+      <div class = "loginButton" >
+          <ion-button (click)="login()" expand="block" color="primary" class = "button" >Login</ion-button>
+      </div>
+  </ion-row>
+  </ion-grid>
 </ion-content>

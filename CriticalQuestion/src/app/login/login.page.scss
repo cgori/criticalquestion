@@ -1,20 +1,13 @@
-.roundedInput {
+.inputStyle{
     --border-color: var(--ion-color-medium-shade);
     --border-radius: 50px;
     --border-width: 1px;
     --box-shadow: 2px gray;
     --highlight-height: 0;
     --background: #eeeeee;
-    padding-bottom: 15px;
-    
-    
-    
-    
-   }
-.input-wrapper{
-    text-align: center;
-    padding:0px;
+    margin : 0 auto;
 }
+
    
 .form{
     width:70%;
@@ -40,6 +33,6 @@
     width:100%;
     padding-bottom: 20px;
 }
-ion-button{
-    width:80%;
+.loginButton{
+    width:100%;
 }
