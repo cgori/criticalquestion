@@ -1,0 +1,30 @@
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Login</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="ion-justify-content-center" color="secondary">
+      <ion-row  style="width:200px;">
+        <ion-col >  
+  
+              <ion-item lines="none" class="roundedInput" >
+                <ion-input type="email" placeholder="Email" name="email" [(ngModel)]="credentials.email"></ion-input>
+              </ion-item>
+            
+              <ion-item lines="none" class="roundedInput">
+                <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="credentials.pw">
+                </ion-input>
+              </ion-item>
+              <div class="buttons">
+                <div class = "item-input-set">
+              <ion-button (click)="login()" expand="block" color="primary" class = "button">Login</ion-button>
+              </div>
+              <ion-button expand="block" color="primary" routerLink="/register" routerDirection="forward" class = "button">Register
+              </ion-button>
+            </div>
+           
+        </ion-col>
+      </ion-row>
+  
+    </ion-content>

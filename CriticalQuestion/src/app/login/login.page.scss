@@ -6,9 +6,17 @@
     --highlight-height: 0;
     --background: #eeeeee;
     padding-bottom: 15px;
+    
+    
    }
 
+.form{
+    width:70%;
+}
 
-.buttons{
-    padding:20px;
+.loginButton{
+    display: flex;
+  align-items: center;
+  justify-content: center;
+    width:100%;
 }
