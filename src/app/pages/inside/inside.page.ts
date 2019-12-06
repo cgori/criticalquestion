@@ -64,26 +64,26 @@ export class InsidePage implements OnInit {
 
   ngOnInit() {
   }
- 
+
   loadSpecialInfo() {
     this.authService.getSpecialData().subscribe(res => {
       this.data = res['msg'];
     });
   }
- 
+
   logout() {
     this.authService.logout();
   }
- 
+
   clearToken() {
     // ONLY FOR TESTING!
     this.storage.remove('access_token');
- 
+
     let toast = this.toastController.create({
       message: 'JWT removed',
       duration: 3000
     });
     toast.then(toast => toast.present());
   }
- 
+
 }
