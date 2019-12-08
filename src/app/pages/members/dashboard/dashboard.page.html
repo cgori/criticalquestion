@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-toolbar color="primary">
+
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+
+      <ion-title>Critical Question</ion-title>
+    </ion-toolbar>
+  </ion-header>
+<ion-content>
+  <ion-item>
+    <ion-label position="fixed">Title</ion-label>
+    <ion-input [(ngModel)]="newBoardroom.title"></ion-input>
+  </ion-item>
+    <ion-button expand="full" (click)="addBoardroom()">Add Boardroom!</ion-button>
+
+    <ion-list #mylist>
+      <ion-list-header>
+        <ion-label>My Boardrooms</ion-label>
+      </ion-list-header>
+
+      <ion-item-sliding *ngFor="let boardroom of boardrooms">
+        <ion-item>
+          <ion-label text-wrap>
+            <h3>{{boardroom.title}}</h3>
+            <ion-text color="secondary">
+              <p>{{ boardroom.id }}</p>
+            </ion-text>
+            <p>{{boardroom.modified | date: 'short'}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option color="secondary" (click)="updateBoardroom(boardroom)">Update</ion-item-option>
+          <ion-item-option color="danger" (click)="deleteBoardroom(boardroom)">Delete</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+</ion-content>
