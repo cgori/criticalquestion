@@ -30,7 +30,7 @@ export class AppComponent {
         if (state) {
           this.router.navigate(['members']);
         } else {
-          this.router.navigate(['login']);
+          this.router.navigate(['index']);
         }
       });
  

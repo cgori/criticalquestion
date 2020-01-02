@@ -1,25 +1,31 @@
-import { Platform, AlertController } from '@ionic/angular';
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { Storage } from '@ionic/storage';
-import { environment } from '../../environments/environment';
-import { tap, catchError } from 'rxjs/operators';
-import { BehaviorSubject } from 'rxjs';
+import { Platform, AlertController } from "@ionic/angular";
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { JwtHelperService } from "@auth0/angular-jwt";
+import { Storage } from "@ionic/storage";
+import { environment } from "../../environments/environment";
+import { tap, catchError } from "rxjs/operators";
+import { BehaviorSubject } from "rxjs";
+import { Router } from "@angular/router";
 
-const TOKEN_KEY = 'access_token';
+const TOKEN_KEY = "access_token";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class AuthService {
-
   url = environment.url;
   user = null;
   authenticationState = new BehaviorSubject(false);
 
-  constructor(private http: HttpClient, private helper: JwtHelperService, private storage: Storage,
-    private plt: Platform, private alertController: AlertController) {
+  constructor(
+    private http: HttpClient,
+    private helper: JwtHelperService,
+    private storage: Storage,
+    private plt: Platform,
+    private alertController: AlertController,
+    private router: Router
+  ) {
     this.plt.ready().then(() => {
       this.checkToken();
     });
@@ -44,28 +50,30 @@ export class AuthService {
   }
 
   register(credentials) {
-    return this.http.post(`${this.url}/api/register`, credentials).pipe(
+    return this.http.post(`${this.url}/api/auth/register`, credentials).pipe(
+      tap(res => {
+        console.log(res);
+        this.showValidAlert("Your account is now pending for verification.");
+      }),
       catchError(e => {
-        this.showAlert(e.error.msg);
-        throw new Error(e);
+        this.showAlert(e.status + " " + e.error.message);
+        throw new Error(e.error.messsage);
       })
     );
   }
 
   login(credentials) {
-    return this.http.post(`${this.url}/api/auth/login`, credentials)
-      .pipe(
-        tap(res => {
-          this.storage.set(TOKEN_KEY, res['token']);
-          this.user = this.helper.decodeToken(res['token']);
-          this.authenticationState.next(true);
-        }),
-        catchError(e => {
-          console.log("here");
-          this.showAlert(e.error.msg);
-          throw new Error(e);
-        })
-      );
+    return this.http.post(`${this.url}/api/auth/login`, credentials).pipe(
+      tap(res => {
+        this.storage.set(TOKEN_KEY, res["token"]);
+        this.user = this.helper.decodeToken(res["token"]);
+        this.authenticationState.next(true);
+      }),
+      catchError(e => {
+        this.showAlert(e.error.message);
+        throw new Error(e);
+      })
+    );
   }
 
   logout() {
@@ -81,8 +89,24 @@ export class AuthService {
   showAlert(msg) {
     let alert = this.alertController.create({
       message: msg,
-      header: 'Error',
-      buttons: ['OK']
+      header: "Error",
+      buttons: ["OK"]
+    });
+    alert.then(alert => alert.present());
+  }
+
+  showValidAlert(msg) {
+    let alert = this.alertController.create({
+      message: msg,
+      header: "Success!",
+      buttons: [
+        {
+          text: "OK",
+          handler: data => {
+            window.location.reload();
+          }
+        }
+      ]
     });
     alert.then(alert => alert.present());
   }
