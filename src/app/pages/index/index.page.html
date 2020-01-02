@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>index</ion-title>
+    <ion-button type="button" label="Click" (click)="loginShow()"  color= "success"> Login </ion-button>
+    <ion-button type="button" label="Click" (click)="registerShow()" color= "success"> Register</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div>
+      <app-login [showMePartially]="login"></app-login>
+  </div>
+
+  <div>
+    <app-register [showMePartially]="register"></app-register>
+  </div>
+
+  
+  
+  
+  
+</ion-content>
