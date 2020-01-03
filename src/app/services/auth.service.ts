@@ -113,4 +113,10 @@ export class AuthService {
   getUser() {
     return this.user;
   }
+
+  getToken(): any {
+    this.storage.get(TOKEN_KEY).then(token => {
+      return token;
+    });
+  }
 }
