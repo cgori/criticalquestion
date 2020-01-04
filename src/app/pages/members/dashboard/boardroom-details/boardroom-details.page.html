@@ -10,6 +10,12 @@
 
 <ion-content>
   <ion-list>
-    {{boardrooms.boardroom?.boardroomID}} {{boardrooms.boardroom?.notes}}
+    <ion-item> {{boardrooms.boardroom?.pollids}} </ion-item>
+    <ion-item
+      *ngFor="let polls of boardrooms.boardroom?.pollIDs"
+      [routerLink]="['./', polls]"
+    >
+      <p>{{polls}}</p>
+    </ion-item>
   </ion-list>
 </ion-content>

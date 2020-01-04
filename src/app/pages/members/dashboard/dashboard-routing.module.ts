@@ -11,7 +11,11 @@ const routes: Routes = [
   {
     path: ':boardroomId',
     loadChildren: () => import('./boardroom-details/boardroom-details.module').then( m => m.BoardroomDetailsPageModule)
+  },  {
+    path: 'poll',
+    loadChildren: () => import('./poll/poll.module').then( m => m.PollPageModule)
   }
+
 ];
 
 @NgModule({

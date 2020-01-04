@@ -11,11 +11,11 @@ export class DashboardPage implements OnInit {
   public boardrooms = [];
 
   constructor(private _boardroomService: BoardroomService) {}
-  
+
   ngOnInit() {
     this._boardroomService
       .getBoardrooms()
-      .subscribe(data => (this.boardrooms = data, console.log(data)));
+      .subscribe(data => ((this.boardrooms = data), console.log(data)));
   }
 
   displayBoards() {
