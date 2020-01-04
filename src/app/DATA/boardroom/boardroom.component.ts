@@ -18,7 +18,13 @@ export class BoardroomComponent implements OnInit {
   }
 
   displayBoards() {
-    for (let i = 0; i < this.boardrooms.length; i++) {}
     console.log(this.boardrooms["boardrooms"]["0"]);
+  }
+
+  displayBoardID(event) {
+    console.log(event);
+    this._boardroomService
+      .getBoardroomOnID(event)
+      .subscribe(data => (this.boardrooms = data));
   }
 }
