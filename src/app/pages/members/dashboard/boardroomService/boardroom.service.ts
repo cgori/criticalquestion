@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from "../../../../../environments/environment";
 import { Boardroom } from "./boardroom";
+import { BoardroomSingle } from "./return";
 import { Observable } from "rxjs";
 import { Storage } from "@ionic/storage";
 import { JwtHelperService } from "@auth0/angular-jwt";
@@ -24,7 +25,7 @@ export class BoardroomService {
     return this.http.get<Boardroom[]>(`${this.url}/api/boardroom`);
   }
 
-  getBoardroomOnID(id: any): Observable<Boardroom[]> {
-    return this.http.get<Boardroom[]>(`${this.url}/api/boardroom/${id}`);
+  getBoardroomOnID(id: any): Observable<BoardroomSingle[]> {
+    return this.http.get<BoardroomSingle[]>(`${this.url}/api/boardroom/${id}`);
   }
 }
