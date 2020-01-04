@@ -1,28 +1,54 @@
 <ion-header>
   <ion-toolbar color="primary">
+
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
 
-    <ion-title>Critical Question</ion-title>
+    <ion-title>Create Boardroom</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content padding>
-  <form [formGroup]="boardroomForm" (ngSubmit)="onSubmit()">
- 
-    <ion-item>
-      <ion-label position="floating">Boardroom Id</ion-label>
-      <ion-input type="id" formControlName="id"></ion-input>
-    </ion-item>
- 
-    <ion-item>
-      <ion-label position="floating">Users</ion-label>
-      <ion-input type="text" name="users[users][]" formControlName="users"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Polls</ion-label>
-      <ion-input type="text" name="polls[polls][]" formControlName="[polls]"></ion-input>
-    </ion-item>
-    <ion-button expand="full" type="submit" [disabled]="!boardroomForm.valid">Login</ion-button>
-  </form>
-</ion-content>
+<ion-content>
+
+  <div *ngIf="showMePartially"> 
+    <form [formGroup]="boardroomForm" (ngSubmit)="onSubmit()">
+   
+      <ion-item>
+        <ion-label position="floating">Title</ion-label>
+        <ion-input type="text" formControlName="title"></ion-input>
+      </ion-item>
+   
+      <ion-item>
+        <ion-label position="floating">First Name</ion-label>
+        <ion-input type="text" formControlName="firstName"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="floating">Last Name</ion-label>
+        <ion-input type="text" formControlName="lastName"></ion-input>
+      </ion-item>
+   
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="floating">Username</ion-label>
+        <ion-input type="text" formControlName="username"></ion-input>
+      </ion-item>
+   
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="floating">role</ion-label>
+        <ion-input type="text" formControlName="role"></ion-input>
+      </ion-item>
+   
+      <ion-button expand="full" type="submit" [disabled]="!credentialsForm.valid">Login</ion-button>
+   
+    </form>
+  </div>

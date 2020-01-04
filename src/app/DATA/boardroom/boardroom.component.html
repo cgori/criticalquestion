@@ -1,9 +1,0 @@
-<button ion-button icon-only (click)="displayBoards()">test</button>
-
-<ion-list *ngFor="let boardroom of boardrooms.boardrooms; let i = index">
-  <ion-item>
-    {{ boardroom.boardroomID }}
-    {{ boardroom.notes }}
-    <button id="i" ion-button (click)="displayBoardID($event)">Click Me</button>
-  </ion-item>
-</ion-list>

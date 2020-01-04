@@ -12,7 +12,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { Storage, IonicStorageModule } from "@ionic/storage";
 import { JwtModule, JWT_OPTIONS } from "@auth0/angular-jwt";
-import { BoardroomService } from "./DATA/boardroom.service";
+import { BoardroomService } from "./pages/members/dashboard/boardroomService/boardroom.service";
 import { HttpConfigInterceptor } from "./services/http-config-interceptor.service";
 
 export function jwtOptionsFactory(storage) {

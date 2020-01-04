@@ -1,13 +1,6 @@
-import { AuthService } from "../../../services/auth.service";
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { Storage } from "@ionic/storage";
-import { ToastController, Platform, IonList } from "@ionic/angular";
-// import { StorageService, Boardroom } from "src/app/service/storage.service";
-import { HttpClient } from "@angular/common/http";
-import { environment } from "../../../../environments/environment";
-import { tap, catchError, map } from "rxjs/operators";
-import { Observable } from "rxjs";
-import { JwtHelperService } from "@auth0/angular-jwt";
+import { Component, OnInit } from "@angular/core";
+import { BoardroomService } from "./boardroomService/boardroom.service";
+import { Boardroom } from "./boardroomService/boardroom";
 
 @Component({
   selector: "app-dashboard",
@@ -15,20 +8,24 @@ import { JwtHelperService } from "@auth0/angular-jwt";
   styleUrls: ["./dashboard.page.scss"]
 })
 export class DashboardPage implements OnInit {
-  url = environment.url;
-  data = "";
-  boardrooms;
-  ngOnInit() {}
-  constructor(
-    private helper: JwtHelperService,
-    private http: HttpClient,
-    private authService: AuthService,
-    private toastController: ToastController,
-    private plt: Platform
-  ) {
-    this.plt.ready().then(() => {
-      this.loadBoardrooms();
-    });
+  public boardrooms = [];
+
+  constructor(private _boardroomService: BoardroomService) {}
+  
+  ngOnInit() {
+    this._boardroomService
+      .getBoardrooms()
+      .subscribe(data => (this.boardrooms = data, console.log(data)));
   }
-  loadBoardrooms() {}
+
+  displayBoards() {
+    console.log(this.boardrooms["boardrooms"]["0"]);
+  }
+
+  displayBoardID(event) {
+    console.log(event);
+    this._boardroomService
+      .getBoardroomOnID(event)
+      .subscribe(data => (this.boardrooms = data));
+  }
 }

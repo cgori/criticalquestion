@@ -6,7 +6,11 @@ import { DashboardPage } from './dashboard.page';
 const routes: Routes = [
   {
     path: '',
-    component: DashboardPage
+    component: DashboardPage,
+    },
+  {
+    path: ':boardroomId',
+    loadChildren: () => import('./boardroom-details/boardroom-details.module').then( m => m.BoardroomDetailsPageModule)
   }
 ];
 

@@ -8,10 +8,8 @@ import { DashboardPageRoutingModule } from "./dashboard-routing.module";
 
 import { DashboardPage } from "./dashboard.page";
 
-import { BoardroomComponent } from "../../../DATA/boardroom/boardroom.component";
-
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule, DashboardPageRoutingModule],
-  declarations: [DashboardPage, BoardroomComponent]
+  declarations: [DashboardPage]
 })
 export class DashboardPageModule {}
