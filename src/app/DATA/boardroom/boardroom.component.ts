@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { BoardroomService } from "../boardroom.service";
-
+import { Boardroom } from "../boardroom";
 @Component({
   selector: "app-boardroom",
   templateUrl: "./boardroom.component.html",
@@ -15,5 +15,10 @@ export class BoardroomComponent implements OnInit {
     this._boardroomService
       .getBoardrooms()
       .subscribe(data => (this.boardrooms = data));
+  }
+
+  displayBoards() {
+    for (let i = 0; i < this.boardrooms.length; i++) {}
+    console.log(this.boardrooms["boardrooms"]["0"]);
   }
 }

@@ -7,7 +7,7 @@ import { Storage } from "@ionic/storage";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { NONE_TYPE } from "@angular/compiler/src/output/output_ast";
 import { AuthService } from "../services/auth.service";
-
+import { fromPromise } from "rxjs/observable/fromPromise";
 @Injectable({
   providedIn: "root"
 })
