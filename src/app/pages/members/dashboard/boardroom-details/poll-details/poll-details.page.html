@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboarda"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Poll</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-toolbar>
+    <ion-title text-center> {{polls.Poll?.title}} </ion-title>
+</ion-toolbar>
+  <ion-toolbar>
+    <ion-title text-center>Patient details</ion-title>
+</ion-toolbar>
+  <ion-item>
+    <div>
+    <P> Allergies: {{polls.Poll?.patient?.allergy}} Drugs: {{polls.Poll?.patient?.drugs}} Age: {{polls.Poll?.patient?.age}} </P>
+    <br>
+    <P> Notes: {{polls.Poll?.patient?.desc}} </P>
+  </div>
+  </ion-item>
+</ion-content>

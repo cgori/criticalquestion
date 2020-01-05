@@ -74,6 +74,18 @@ export class AuthService {
     );
 
   }
+  createPoll(poll){
+    return this.http.post(`${this.url}/api/poll`, poll).pipe(
+      tap(res => {
+        console.log(res);
+        this.showValidAlert("Poll Created");
+      }),
+      catchError(e => {
+        this.showAlert(e.status + " " + e.error.message);
+        throw new Error(e.error.messsage);
+      })
+    );
+  }
 
   login(credentials) {
     return this.http.post(`${this.url}/api/auth/login`, credentials).pipe(

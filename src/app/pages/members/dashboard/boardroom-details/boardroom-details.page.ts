@@ -11,6 +11,7 @@ export class BoardroomDetailsPage implements OnInit {
   user = null;
   public boardrooms = [];
   loadedBoardroom: any;
+  public show: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -28,5 +29,8 @@ export class BoardroomDetailsPage implements OnInit {
         .getBoardroomOnID(boardroomId)
         .subscribe(data => ((this.boardrooms = data, console.log(data))));
     });
+  }
+  createPollShow() {
+    this.show = true;
   }
 }

@@ -14,7 +14,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./boardroom.page.scss'],
 })
 export class BoardroomPage implements OnInit {
-  @Input() showMePartially: boolean;
   boardroomForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
