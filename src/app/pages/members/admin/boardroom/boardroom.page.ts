@@ -19,18 +19,27 @@ export class BoardroomPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
-  ) {}
+    private router: Router,
+  ) {
+    this.ionViewWillEnter();
+
+    this.boardroomForm = this.formBuilder.group({
+      title: ["", [Validators.required]],
+      userIDs: [[this.user["user"]["_id"]], [Validators.required]],
+    });
+
+  }
+  user = null;
 
   ngOnInit() {
-    this.boardroomForm = this.formBuilder.group({
-      notes: ["", [Validators.required]],
-      userIDs: [[], [Validators.required]],
-    });
+
   }
 
   onSubmit() {
     this.authService.createBoardroom(this.boardroomForm.value).subscribe();
     console.log(this.boardroomForm.value);
+  }
+  ionViewWillEnter() {
+    this.user = this.authService.getUser();
   }
 }

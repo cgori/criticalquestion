@@ -8,6 +8,7 @@ import { BoardroomService } from "../boardroomService/boardroom.service";
   styleUrls: ["./boardroom-details.page.scss"]
 })
 export class BoardroomDetailsPage implements OnInit {
+  user = null;
   public boardrooms = [];
   loadedBoardroom: any;
 
