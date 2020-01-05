@@ -61,6 +61,19 @@ export class AuthService {
       })
     );
   }
+  createBoardroom(boardroom){
+    return this.http.post(`${this.url}/api/boardroom`, boardroom).pipe(
+      tap(res => {
+        console.log(res);
+        this.showValidAlert("Boardroom Created");
+      }),
+      catchError(e => {
+        this.showAlert(e.status + " " + e.error.message);
+        throw new Error(e.error.messsage);
+      })
+    );
+
+  }
 
   login(credentials) {
     return this.http.post(`${this.url}/api/auth/login`, credentials).pipe(

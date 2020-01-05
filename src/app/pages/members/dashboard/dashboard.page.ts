@@ -15,17 +15,6 @@ export class DashboardPage implements OnInit {
   ngOnInit() {
     this._boardroomService
       .getBoardrooms()
-      .subscribe(data => ((this.boardrooms = data), console.log(data)));
-  }
-
-  displayBoards() {
-    console.log(this.boardrooms["boardrooms"]["0"]);
-  }
-
-  displayBoardID(event) {
-    console.log(event);
-    this._boardroomService
-      .getBoardroomOnID(event)
-      .subscribe(data => (this.boardrooms = data));
+      .subscribe(data => ((this.boardrooms = data)));
   }
 }

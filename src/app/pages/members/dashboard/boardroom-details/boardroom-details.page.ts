@@ -25,7 +25,7 @@ export class BoardroomDetailsPage implements OnInit {
       const boardroomId = paramMap.get("boardroomId");
       this._boardroomService
         .getBoardroomOnID(boardroomId)
-        .subscribe(data => ((this.boardrooms = data), console.log(data)));
+        .subscribe(data => ((this.boardrooms = data, console.log(data))));
     });
   }
 }

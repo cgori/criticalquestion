@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 })
 export class BoardroomPage implements OnInit {
   @Input() showMePartially: boolean;
-  credentialsForm: FormGroup;
+  boardroomForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
@@ -23,23 +23,14 @@ export class BoardroomPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.credentialsForm = this.formBuilder.group({
-      title: ["", [Validators.required]],
-      firstName: ["", [Validators.required]],
-      lastName: ["", [Validators.required]],
-      email: ["", [Validators.required, Validators.email]],
-      username: [
-        "",
-        [Validators.required, Validators.pattern("^[a-z0-9]{8,32}$")]
-      ],
-      password: ["", [Validators.required, Validators.pattern("^.{8,64}$")]],
-      role: ["", [Validators.required]],
-      status: ["pending"]
+    this.boardroomForm = this.formBuilder.group({
+      notes: ["", [Validators.required]],
+      userIDs: [[], [Validators.required]],
     });
   }
-  onSubmit() {
-    this.authService.register(this.credentialsForm.value).subscribe();
-    console.log(this.credentialsForm.value);
-  }
 
+  onSubmit() {
+    this.authService.createBoardroom(this.boardroomForm.value).subscribe();
+    console.log(this.boardroomForm.value);
+  }
 }

@@ -1,21 +1,20 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-back-button defaultHref="/dashboarda"></ion-back-button>
     </ion-buttons>
 
-    <ion-title>Boardroom</ion-title>
+    <ion-title>{{boardrooms.boardroom?.notes}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item> {{boardrooms.boardroom?.pollids}} </ion-item>
-    <ion-item
+    <ion-item detail
       *ngFor="let polls of boardrooms.boardroom?.pollIDs"
       [routerLink]="['./', polls]"
     >
-      <p>{{polls}}</p>
+      <p>Poll {{polls}}:</p>
     </ion-item>
   </ion-list>
 </ion-content>
