@@ -15,6 +15,6 @@ export class DashboardPage implements OnInit {
   ngOnInit() {
     this._boardroomService
       .getBoardrooms()
-      .subscribe(data => ((this.boardrooms = data)));
+      .subscribe(data => ((this.boardrooms = data, console.log(data))));
   }
 }

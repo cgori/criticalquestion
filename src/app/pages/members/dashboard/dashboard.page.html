@@ -16,9 +16,9 @@
   <ion-list>
     <ion-item detail
       *ngFor="let boardroom of boardrooms.boardrooms; let i = index"
-      [routerLink]="['./', boardroom.boardroomID]"
+      [routerLink]="['./', boardroom._id]"
     >
-    {{ boardroom.notes }}  
+    {{ boardroom.title }}  
     </ion-item>
   </ion-list>
 </ion-content>

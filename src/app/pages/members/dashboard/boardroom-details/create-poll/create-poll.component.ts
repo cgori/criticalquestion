@@ -7,6 +7,7 @@ import {
 } from "@angular/forms";
 import { AuthService } from "../../../../../services/auth.service";
 import { Router } from "@angular/router";
+import { stringify } from 'querystring';
 
 
 @Component({
@@ -25,17 +26,20 @@ export class CreatePollComponent implements OnInit {
 
   ngOnInit() {
     this.createPoll = this.formBuilder.group({
-      title: ["", [Validators.required]],
-      firstName: ["", [Validators.required]],
-      lastName: ["", [Validators.required]],
-      email: ["", [Validators.required, Validators.email]],
-      username: [
-        "",
-        [Validators.required, Validators.pattern("^[a-z0-9]{8,32}$")]
-      ],
-      password: ["", [Validators.required, Validators.pattern("^.{8,64}$")]],
-      role: ["", [Validators.required]],
-      status: ["pending"]
+      boardroomID: [""],
+      patient: [{
+        allergy: [""],
+        drugs: [""],
+        desc: [""],
+        age: []
+      },[Validators.required]],
+      question: [""],
+      description: [""],
+      options: [{
+        title: [""],
+        votes: []
+      }],
+      status: [""]
     });
   }
 

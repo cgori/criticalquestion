@@ -26,11 +26,7 @@ const routes: Routes = [
         path: 'boardroom',
         loadChildren: '../admin/boardroom/boardroom.module#BoardroomPageModule',
         canActivate: [AdminAuthGuardService]
-      },
-      {
-        path: 'poll',
-        loadChildren: '../admin/poll/poll.module#PollPageModule',
-        canActivate: [AdminAuthGuardService]      }
+      }
     ]
   },
   {

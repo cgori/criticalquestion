@@ -31,10 +31,6 @@ export class TabsPage implements OnInit {
           url: '/members/pages/boardroom'
         },
         {
-          title: 'Create Poll',
-          url: '/members/pages/poll'
-        },
-        {
           title: 'View Accounts',
           url: '/members/pages/accounts'
         }

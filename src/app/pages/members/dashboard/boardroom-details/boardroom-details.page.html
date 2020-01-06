@@ -4,7 +4,7 @@
       <ion-back-button defaultHref="/dashboarda"></ion-back-button>
     </ion-buttons>
 
-    <ion-title>{{boardrooms.boardroom?.notes}}</ion-title>
+    <ion-title>{{boardrooms.boardroom?.title}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -17,10 +17,11 @@
 
   <ion-list>
     <ion-item detail
-      *ngFor="let polls of boardrooms.boardroom?.pollIDs"
-      [routerLink]="['./', polls]"
+      *ngFor="let polls of boardrooms.polls"
+      [routerLink]="['./', polls._id]"
     >
-      <p>Poll {{polls}}:</p>
+    <div align-items-start> <p>{{polls.question}}</p>  </div>
+    <div class="ion-text-end"> <p>Status: {{polls.status}}</p>  </div>
     </ion-item>
   </ion-list>
 </ion-content>
