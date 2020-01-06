@@ -20,6 +20,8 @@ export class CreatePollComponent implements OnInit {
   @Input() showMePartially: boolean;
   createPoll: FormGroup;
   public boardrooms = [];
+  public createdPollID;
+  public boardroomId;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -54,20 +56,20 @@ export class CreatePollComponent implements OnInit {
       const boardroomId = paramMap.get("boardroomId");
       this._boardroomService
         .getBoardroomOnID(boardroomId)
-        .subscribe(data => ((this.boardrooms = data), console.log(data)));
+        .subscribe(data => ((this.boardrooms = data)));
     });
   }
 
   onSubmit() {
     this.activatedRoute.paramMap.subscribe(paramMap => {
-      const boardroomId = paramMap.get("boardroomId");
-      this.createPoll.value["boardroomID"] = boardroomId;
-      console.log(this.createPoll.value["boardroomID"]);
-      console.log(this.createPoll.value);
-      const pID = this.authService
+      this.boardroomId = paramMap.get("boardroomId");
+      this.createPoll.value["boardroomID"] = this.boardroomId;
+      this.authService
         .createPoll(this.createPoll.value)
-        .subscribe();
+        .subscribe((data => ((this.createdPollID = data, this.doSomething()))));
     });
-    this.authService.sendtoBoardroom().subscribe();
+  }
+  public doSomething() {
+    this.authService.sendtoBoardroom(this.createdPollID["Poll"]["_id"], this.boardroomId);
   }
 }

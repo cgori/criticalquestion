@@ -17,6 +17,8 @@ const TOKEN_KEY = "access_token";
 export class AuthService {
   url = environment.url;
   user = null;
+  pID;
+  bID;
 
   authenticationState = new BehaviorSubject(false);
 
@@ -36,7 +38,6 @@ export class AuthService {
 
   checkToken() {
     this.storage.get(TOKEN_KEY).then(token => {
-      console.log(token);
       if (token) {
         let decoded = this.helper.decodeToken(token);
         let isExpired = this.helper.isTokenExpired(token);
@@ -54,7 +55,6 @@ export class AuthService {
   register(credentials) {
     return this.http.post(`${this.url}/api/auth/register`, credentials).pipe(
       tap(res => {
-        console.log(res);
         this.showValidAlert("Your account is now pending for verification.");
       }),
       catchError(e => {
@@ -66,7 +66,6 @@ export class AuthService {
   createBoardroom(boardroom) {
     return this.http.post(`${this.url}/api/boardroom`, boardroom).pipe(
       tap(res => {
-        console.log(res);
         this.showValidAlert("Boardroom Created");
       }),
       catchError(e => {
@@ -79,9 +78,6 @@ export class AuthService {
   createPoll(poll) {
     return this.http.post(`${this.url}/api/poll`, poll).pipe(
       tap(res => {
-        this.showValidAlert("Poll Created");
-        console.log(res["Poll"]["_id"]); //need to create service and add it to it so sendtoboardroom can access it
-        console.log(res["Poll"]["boardroomID"]);
       }),
       catchError(e => {
         this.showAlert(e.status + " " + e.error.message);
@@ -90,24 +86,17 @@ export class AuthService {
     );
   }
 
-  sendtoBoardroom() {
-    let body,
-      bID,
-      pID = "";
-    //need to get pID and bID
-    //from createPoll()
-    return this.http
-      .patch(`${this.url}/api/boardroom/${bID}/${pID}`, body)
-      .pipe(
-        tap(res => {
-          console.log(res);
-          this.showValidAlert("Poll Created");
-        }),
-        catchError(e => {
-          this.showAlert(e.status + " " + e.error.message);
-          throw new Error(e.error.messsage);
-        })
-      );
+  sendtoBoardroom(pollID, boardroomID) {
+    this.http
+      .patch(`${this.url}/api/boardroom/${boardroomID}/${pollID}`,{}).subscribe(
+        res => { 
+          console.log('received ok response from patch request');
+        },
+        error => {
+          console.error('There was an error during the request');
+          console.log(error);
+        });
+      console.log('request sent. Waiting for response...');
   }
 
   login(credentials) {
