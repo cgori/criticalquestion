@@ -5,9 +5,10 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 import { Storage } from "@ionic/storage";
 import { environment } from "../../environments/environment";
 import { tap, catchError } from "rxjs/operators";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, bindCallback } from "rxjs";
 import { Router } from "@angular/router";
-
+import { PollDetailsPage } from "../pages/members/dashboard/boardroom-details/poll-details/poll-details.page";
+import { Observable } from "rxjs";
 const TOKEN_KEY = "access_token";
 
 @Injectable({
@@ -16,6 +17,7 @@ const TOKEN_KEY = "access_token";
 export class AuthService {
   url = environment.url;
   user = null;
+
   authenticationState = new BehaviorSubject(false);
 
   constructor(
@@ -61,7 +63,7 @@ export class AuthService {
       })
     );
   }
-  createBoardroom(boardroom){
+  createBoardroom(boardroom) {
     return this.http.post(`${this.url}/api/boardroom`, boardroom).pipe(
       tap(res => {
         console.log(res);
@@ -72,19 +74,40 @@ export class AuthService {
         throw new Error(e.error.messsage);
       })
     );
-
   }
-  createPoll(poll){
+
+  createPoll(poll) {
     return this.http.post(`${this.url}/api/poll`, poll).pipe(
       tap(res => {
-        console.log(res);
         this.showValidAlert("Poll Created");
+        console.log(res["Poll"]["_id"]); //need to create service and add it to it so sendtoboardroom can access it
+        console.log(res["Poll"]["boardroomID"]);
       }),
       catchError(e => {
         this.showAlert(e.status + " " + e.error.message);
         throw new Error(e.error.messsage);
       })
     );
+  }
+
+  sendtoBoardroom() {
+    let body,
+      bID,
+      pID = "";
+    //need to get pID and bID
+    //from createPoll()
+    return this.http
+      .patch(`${this.url}/api/boardroom/${bID}/${pID}`, body)
+      .pipe(
+        tap(res => {
+          console.log(res);
+          this.showValidAlert("Poll Created");
+        }),
+        catchError(e => {
+          this.showAlert(e.status + " " + e.error.message);
+          throw new Error(e.error.messsage);
+        })
+      );
   }
 
   login(credentials) {

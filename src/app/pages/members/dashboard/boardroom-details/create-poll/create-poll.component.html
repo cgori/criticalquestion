@@ -1,51 +1,56 @@
-
- <div *ngIf="showMePartially"> 
+<div *ngIf="showMePartially">
   <form [formGroup]="createPoll" (ngSubmit)="onSubmit()">
- 
     <ion-item>
       <ion-label position="floating">Question</ion-label>
       <ion-input type="text" formControlName="question"></ion-input>
     </ion-item>
- 
-    <ion-item>
-      <ion-label position="floating">Patient: Allergy</ion-label>
-      <ion-input type="text" formControlName="allergy"></ion-input>
-    </ion-item>
+    <div formGroupName="patient">
+      <ion-item>
+        <ion-label position="floating">Patient: Allergy</ion-label>
+        <ion-input type="text" formControlName="allergy"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Patient: Drugs</ion-label>
-      <ion-input type="text" formControlName="drugs"></ion-input>
-    </ion-item>
- 
-    <ion-item>
-      <ion-label position="floating">Patient: Desc</ion-label>
-      <ion-input type="email" formControlName="desc"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label position="floating">Patient: Drugs</ion-label>
+        <ion-input type="text" formControlName="drugs"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Patient: Age</ion-label>
-      <ion-input type="text" formControlName="age"></ion-input>
-    </ion-item>
- 
-    <ion-item>
-      <ion-label position="floating">Options</ion-label>
-      <ion-input type="text" formControlName="option"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label position="floating">Patient: Desc</ion-label>
+        <ion-input type="email" formControlName="desc"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Patient: Age</ion-label>
+        <ion-input type="number" formControlName="age"></ion-input>
+      </ion-item>
+    </div>
 
     <ion-item>
       <ion-label position="floating">description</ion-label>
       <ion-input type="text" formControlName="description"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label position="floating">title</ion-label>
-      <ion-input type="text" formControlName="title"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">votes</ion-label>
-      <ion-input type="text" formControlName="votes"></ion-input>
-    </ion-item>
- 
-    <ion-button expand="full" type="submit" [disabled]="!createPoll.valid">Login</ion-button>
- 
+
+    <div formGroupName="options">
+      <ion-item>
+        <ion-label position="floating">title</ion-label>
+        <ion-input type="text" formControlName="title"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">title</ion-label>
+        <ion-input type="text" formControlName="title"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">title</ion-label>
+        <ion-input type="text" formControlName="title"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">title</ion-label>
+        <ion-input type="text" formControlName="title"></ion-input>
+      </ion-item>
+    </div>
+    <ion-button expand="full" type="submit" [disabled]="!createPoll.valid"
+      >Login</ion-button
+    >
   </form>
 </div>
