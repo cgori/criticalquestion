@@ -34,9 +34,11 @@ export class BoardroomDetailsPage implements OnInit {
   isChairman() {
     this.getUser();
     if (this.user.user.role === 'chairman'){
+      console.log(this.user.user.role);
       return true;
     } else {
       return false;
+      console.log("dwadwadaw");
     }
   }
     getUser() {
