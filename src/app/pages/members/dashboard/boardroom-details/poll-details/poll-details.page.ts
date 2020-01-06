@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PollServiceService } from '../pollService/poll-service.service';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-poll-details',
@@ -8,7 +9,10 @@ import { PollServiceService } from '../pollService/poll-service.service';
   styleUrls: ['./poll-details.page.scss'],
 })
 export class PollDetailsPage implements OnInit {
+  createPoll: FormGroup;
   public polls = [];
+  public userID;
+  public pollID;
   constructor(
     private activatedRoute: ActivatedRoute,
     private _pollService: PollServiceService
@@ -20,11 +24,16 @@ export class PollDetailsPage implements OnInit {
         //redirect
         return;
       }
-      const pollID = paramMap.get("pollID");
+      this.pollID = paramMap.get("pollID");
       this._pollService
-        .getPollOnID(pollID)
+        .getPollOnID(this.pollID)
         .subscribe(data => ((this.polls = data, console.log(data))));
     });
+  }
+  addVote(event: any){
+    console.log(event);
+    this._pollService
+    .addVote(event, this.pollID);
   }
 }
 

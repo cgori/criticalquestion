@@ -27,10 +27,11 @@
   <ion-toolbar>
     <ion-title text-center>Patient details</ion-title>
 </ion-toolbar>
-  <ion-item>
+  <ion-item (click)="addVote(polls.Poll?._id)">
     Alergies: {{polls.Poll?.patient.allergy}} 
     Drugs: {{polls.Poll?.patient.drugs}} <br />
     Age: {{polls.Poll?.patient.age}}
     Description: {{polls.Poll?.patient.desc}}
+    <ion-button type="button" label="Click" (click)=this.addVote() color= "success">Vote</ion-button>
   </ion-item>
 </ion-content>

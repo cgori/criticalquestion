@@ -22,4 +22,17 @@ export class PollServiceService {
   getPollOnID(id: any): Observable<any> {
     return this.http.get<any>(`${this.url}/api/poll/${id}`);
   }
+  addVote(pollID, optionID){
+    this.http
+      .patch(`${this.url}/api/boardroom/${pollID}/${optionID}`,{}).subscribe(
+        res => { 
+          console.log('received ok response from patch request');
+        },
+        error => {
+          console.error('There was an error during the request');
+          console.log(error);
+        });
+      console.log('request sent. Waiting for response...');
+
+  }
 }

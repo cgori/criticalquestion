@@ -25,6 +25,7 @@ export class CreatePollComponent implements OnInit {
   public show: boolean = false;
   public show1: boolean = false;
   public userID;
+  public user;
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
@@ -63,9 +64,10 @@ export class CreatePollComponent implements OnInit {
         .subscribe(data => ((this.boardrooms = data)));
     });
 
+    console.log("dwaadwdw");
     this._boardroomService
         .getAllUsers()
-        .subscribe(data => ((this.boardrooms  = data)));
+        .subscribe(data => ((this.user  = data, console.log(data))));
   }
 
   onSubmit() {

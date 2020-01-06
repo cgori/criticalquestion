@@ -78,8 +78,8 @@
 </ion-input>
 <ion-input *ngIf="this.show1" type="text" value="" align-items-center>
 <ion-list>
-  <ion-item detail *ngFor="let user of users.users" class="tempUser" onclick=this.addUserToBoard(user._id)> 
- <p>{{user.username}}</p>
+  <ion-item *ngFor="let user of user.users" (click)="addUserToBoard(user._id)">
+    {{user.email}}
   </ion-item>
 </ion-list>
 </ion-input>
