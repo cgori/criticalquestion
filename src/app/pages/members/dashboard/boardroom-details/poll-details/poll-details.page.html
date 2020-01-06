@@ -10,16 +10,27 @@
 
 <ion-content>
   <ion-toolbar>
-    <ion-title text-center> {{polls.Poll?.title}} </ion-title>
+    <ion-title text-center> {{polls.Poll?.question}} </ion-title>
 </ion-toolbar>
+<ion-item>
+   Description: {{polls.Poll?.description}}
+</ion-item>
+<ion-toolbar>
+  <ion-title text-center> Options </ion-title>
+</ion-toolbar>
+<ion-list>
+  <ion-item *ngFor="let item of polls.Poll?.options">
+    Option: {{item.title}}  Votes: {{item.votes}} <br />
+  </ion-item>
+</ion-list>
+
   <ion-toolbar>
     <ion-title text-center>Patient details</ion-title>
 </ion-toolbar>
   <ion-item>
-    <div>
-    <P> Allergies: {{polls.Poll?.patient?.allergy}} Drugs: {{polls.Poll?.patient?.drugs}} Age: {{polls.Poll?.patient?.age}} </P>
-    <br>
-    <P> Notes: {{polls.Poll?.patient?.desc}} </P>
-  </div>
+    Alergies: {{polls.Poll?.patient.allergy}} 
+    Drugs: {{polls.Poll?.patient.drugs}} <br />
+    Age: {{polls.Poll?.patient.age}}
+    Description: {{polls.Poll?.patient.desc}}
   </ion-item>
 </ion-content>

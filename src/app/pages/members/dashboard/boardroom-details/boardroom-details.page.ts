@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { BoardroomService } from "../boardroomService/boardroom.service";
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: "app-boardroom-details",
@@ -11,9 +12,9 @@ export class BoardroomDetailsPage implements OnInit {
   user = null;
   public boardrooms = [];
   loadedBoardroom: any;
-  public show: boolean = false;
 
   constructor(
+    private authService: AuthService,
     private activatedRoute: ActivatedRoute,
     private _boardroomService: BoardroomService
   ) {}
@@ -30,7 +31,15 @@ export class BoardroomDetailsPage implements OnInit {
         .subscribe(data => ((this.boardrooms = data)));
     });
   }
-  createPollShow() {
-    this.show = true;
+  isChairman() {
+    this.getUser();
+    if (this.user.user.role === 'chairman'){
+      return true;
+    } else {
+      return false;
+    }
+  }
+    getUser() {
+    this.user = this.authService.getUser();
   }
 }

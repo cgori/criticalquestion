@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, ViewChild } from "@angular/core";
 import {
   FormGroup,
   FormBuilder,
@@ -22,7 +22,9 @@ export class CreatePollComponent implements OnInit {
   public boardrooms = [];
   public createdPollID;
   public boardroomId;
-
+  public show: boolean = false;
+  public show1: boolean = false;
+  public userID;
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
@@ -48,6 +50,8 @@ export class CreatePollComponent implements OnInit {
       description: [""],
       status: [""]
     });
+
+
     this.activatedRoute.paramMap.subscribe(paramMap => {
       if (!paramMap.has("boardroomId")) {
         //redirect
@@ -58,6 +62,10 @@ export class CreatePollComponent implements OnInit {
         .getBoardroomOnID(boardroomId)
         .subscribe(data => ((this.boardrooms = data)));
     });
+
+    this._boardroomService
+        .getAllUsers()
+        .subscribe(data => ((this.boardrooms  = data)));
   }
 
   onSubmit() {
@@ -72,4 +80,14 @@ export class CreatePollComponent implements OnInit {
   public doSomething() {
     this.authService.sendtoBoardroom(this.createdPollID["Poll"]["_id"], this.boardroomId);
   }
+  createPollShow() {
+    this.show = !this.show;
+  }
+  addUser() {
+    this.show1 = !this.show1;
+  }
+  addUserToBoard(){
+    this.authService.addUserToBoard(this.userID , this.boardroomId);
+  }
+
 }

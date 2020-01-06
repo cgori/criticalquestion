@@ -98,6 +98,18 @@ export class AuthService {
         });
       console.log('request sent. Waiting for response...');
   }
+  addUserToBoard(userID, boardroomID) {
+    this.http
+      .patch(`${this.url}/api/boardroom/${userID}/${boardroomID}`,{}).subscribe(
+        res => { 
+          console.log('received ok response from patch request');
+        },
+        error => {
+          console.error('There was an error during the request');
+          console.log(error);
+        });
+      console.log('request sent. Waiting for response...');
+  }
 
   login(credentials) {
     return this.http.post(`${this.url}/api/auth/login`, credentials).pipe(

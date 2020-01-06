@@ -31,7 +31,7 @@ export class TabsPage implements OnInit {
           url: '/members/pages/boardroom'
         },
         {
-          title: 'View Accounts',
+          title: 'Accounts',
           url: '/members/pages/accounts'
         }
       ];

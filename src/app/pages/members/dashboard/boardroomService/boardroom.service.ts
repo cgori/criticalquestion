@@ -28,4 +28,7 @@ export class BoardroomService {
   getBoardroomOnID(id: any): Observable<BoardroomSingle[]> {
     return this.http.get<BoardroomSingle[]>(`${this.url}/api/boardroom/${id}`);
   }
+  getAllUsers(): Observable<Boardroom[]> {
+    return this.http.get<Boardroom[]>(`${this.url}/api/user`);
+  }
 }
