@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { BoardroomService } from "../boardroomService/boardroom.service";
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from "src/app/services/auth.service";
 
 @Component({
   selector: "app-boardroom-details",
@@ -28,18 +28,18 @@ export class BoardroomDetailsPage implements OnInit {
       const boardroomId = paramMap.get("boardroomId");
       this._boardroomService
         .getBoardroomOnID(boardroomId)
-        .subscribe(data => ((this.boardrooms = data)));
+        .subscribe(data => (this.boardrooms = data));
     });
   }
   isChairman() {
     this.getUser();
-    if (this.user.user.role === 'chairman'){
+    if (this.user.user.role === "chairman") {
       return true;
     } else {
       return false;
     }
   }
-    getUser() {
+  getUser() {
     this.user = this.authService.getUser();
   }
 }

@@ -73,13 +73,6 @@ export class HttpConfigInterceptor implements HttpInterceptor {
   }
 
   async presentAlert(status, reason) {
-    const alert = await this.alertController.create({
-      header: status + " Error",
-      subHeader: "Subtitle",
-      message: reason,
-      buttons: ["OK"]
-    });
-
-    await alert.present();
+    console.log(status, reason);
   }
 }

@@ -77,8 +77,7 @@ export class AuthService {
 
   createPoll(poll) {
     return this.http.post(`${this.url}/api/poll`, poll).pipe(
-      tap(res => {
-      }),
+      tap(res => {}),
       catchError(e => {
         this.showAlert(e.status + " " + e.error.message);
         throw new Error(e.error.messsage);
@@ -88,27 +87,31 @@ export class AuthService {
 
   sendtoBoardroom(pollID, boardroomID) {
     this.http
-      .patch(`${this.url}/api/boardroom/${boardroomID}/${pollID}`,{}).subscribe(
-        res => { 
-          console.log('received ok response from patch request');
+      .patch(`${this.url}/api/boardroom/${boardroomID}/${pollID}`, {})
+      .subscribe(
+        res => {
+          console.log("received ok response from patch request");
         },
         error => {
-          console.error('There was an error during the request');
+          console.error("There was an error during the request");
           console.log(error);
-        });
-      console.log('request sent. Waiting for response...');
+        }
+      );
+    console.log("request sent. Waiting for response...");
   }
   addUserToBoard(userID, boardroomID) {
     this.http
-      .patch(`${this.url}/api/boardroom/${userID}/${boardroomID}`,{}).subscribe(
-        res => { 
-          console.log('received ok response from patch request');
+      .patch(`${this.url}/api/boardroom/${userID}/${boardroomID}`, {})
+      .subscribe(
+        res => {
+          console.log("received ok response from patch request");
         },
         error => {
-          console.error('There was an error during the request');
+          console.error("There was an error during the request");
           console.log(error);
-        });
-      console.log('request sent. Waiting for response...');
+        }
+      );
+    console.log("request sent. Waiting for response...");
   }
 
   login(credentials) {
