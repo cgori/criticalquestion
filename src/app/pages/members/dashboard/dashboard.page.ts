@@ -8,13 +8,13 @@ import { Boardroom } from "./boardroomService/boardroom";
   styleUrls: ["./dashboard.page.scss"]
 })
 export class DashboardPage implements OnInit {
-  public boardrooms = [];
+  boardrooms = <any>{};
 
   constructor(private _boardroomService: BoardroomService) {}
 
   ngOnInit() {
     this._boardroomService
       .getBoardrooms()
-      .subscribe(data => ((this.boardrooms = data)));
+      .subscribe(data => ((this.boardrooms = data, console.log(data))));
   }
 }

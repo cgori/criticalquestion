@@ -19,7 +19,7 @@
   <ion-title text-center> Options </ion-title>
 </ion-toolbar>
 <ion-list>
-  <ion-item *ngFor="let item of polls.Poll?.options">
+  <ion-item *ngFor="let item of polls.Poll?.options" (click)="addVote(polls.Poll?._id)">
     Option: {{item.title}}  Votes: {{item.votes}} <br />
   </ion-item>
 </ion-list>
@@ -27,11 +27,10 @@
   <ion-toolbar>
     <ion-title text-center>Patient details</ion-title>
 </ion-toolbar>
-  <ion-item (click)="addVote(polls.Poll?._id)">
+  <ion-item>
     Alergies: {{polls.Poll?.patient.allergy}} 
     Drugs: {{polls.Poll?.patient.drugs}} <br />
     Age: {{polls.Poll?.patient.age}}
     Description: {{polls.Poll?.patient.desc}}
-    <ion-button type="button" label="Click" (click)=this.addVote() color= "success">Vote</ion-button>
   </ion-item>
 </ion-content>

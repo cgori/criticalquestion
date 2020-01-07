@@ -19,7 +19,7 @@ import { BoardroomService } from "../../boardroomService/boardroom.service";
 export class CreatePollComponent implements OnInit {
   @Input() showMePartially: boolean;
   createPoll: FormGroup;
-  public boardrooms = [];
+  public boardrooms = <any>{};
   public createdPollID;
   public boardroomId;
   public show: boolean = false;
@@ -64,10 +64,10 @@ export class CreatePollComponent implements OnInit {
         .subscribe(data => ((this.boardrooms = data)));
     });
 
-    console.log("dwaadwdw");
+
     this._boardroomService
         .getAllUsers()
-        .subscribe(data => ((this.user  = data, console.log(data))));
+        .subscribe(data => ((this.user  = data)));
   }
 
   onSubmit() {
@@ -88,8 +88,8 @@ export class CreatePollComponent implements OnInit {
   addUser() {
     this.show1 = !this.show1;
   }
-  addUserToBoard(){
-    this.authService.addUserToBoard(this.userID , this.boardroomId);
+  addUserToBoard(addedUser){
+    this.authService.addUserToBoard(addedUser , this.boardroomId);
   }
 
 }

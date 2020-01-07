@@ -15,7 +15,7 @@ const TOKEN_KEY = "access_token";
   providedIn: "root"
 })
 export class AuthService {
-  url = environment.url;
+  url = "http://51.89.139.24";
   user = null;
   pID;
   bID;
@@ -123,6 +123,9 @@ export class AuthService {
         throw new Error(e);
       })
     );
+    this.storage.get(TOKEN_KEY).then(token => {
+      console.log(token);
+    });
   }
 
   logout() {

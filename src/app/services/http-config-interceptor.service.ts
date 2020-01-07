@@ -32,7 +32,6 @@ export class HttpConfigInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     // YOU CAN ALSO DO THIS
     // const token = this.authenticationService.getToke()
-
     return from(this.storage.get(TOKEN_KEY)).pipe(
       switchMap(token => {
         if (token) {

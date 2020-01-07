@@ -10,7 +10,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class PollDetailsPage implements OnInit {
   createPoll: FormGroup;
-  public polls = [];
+  public polls = <any>{};
   public userID;
   public pollID;
   constructor(
@@ -27,11 +27,10 @@ export class PollDetailsPage implements OnInit {
       this.pollID = paramMap.get("pollID");
       this._pollService
         .getPollOnID(this.pollID)
-        .subscribe(data => ((this.polls = data, console.log(data))));
+        .subscribe(data => ((this.polls = data)));
     });
   }
   addVote(event: any){
-    console.log(event);
     this._pollService
     .addVote(event, this.pollID);
   }

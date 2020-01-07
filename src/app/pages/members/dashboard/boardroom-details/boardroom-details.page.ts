@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class BoardroomDetailsPage implements OnInit {
   user = null;
-  public boardrooms = [];
+  public boardrooms = <any>{};
   loadedBoardroom: any;
 
   constructor(
@@ -34,11 +34,9 @@ export class BoardroomDetailsPage implements OnInit {
   isChairman() {
     this.getUser();
     if (this.user.user.role === 'chairman'){
-      console.log(this.user.user.role);
       return true;
     } else {
       return false;
-      console.log("dwadwadaw");
     }
   }
     getUser() {

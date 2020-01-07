@@ -19,7 +19,7 @@ export class BoardroomService {
     private helper: JwtHelperService,
     private auth: AuthService
   ) {}
-  url = environment.url;
+  url = "http://51.89.139.24";
 
   getBoardrooms(): Observable<Boardroom[]> {
     return this.http.get<Boardroom[]>(`${this.url}/api/boardroom`);
