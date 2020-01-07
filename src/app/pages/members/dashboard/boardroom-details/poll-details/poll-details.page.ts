@@ -13,9 +13,10 @@ export class PollDetailsPage implements OnInit {
   public polls = <any>{};
   public userID;
   public pollID;
+  public user;
   constructor(
     private activatedRoute: ActivatedRoute,
-    private _pollService: PollServiceService
+    private _pollService: PollServiceService,
   ) {}
 
   ngOnInit() {
@@ -31,8 +32,10 @@ export class PollDetailsPage implements OnInit {
     });
   }
   addVote(event: any){
+    
     this._pollService
     .addVote(event, this.pollID);
   }
+
 }
 

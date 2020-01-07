@@ -18,12 +18,14 @@ export class PollServiceService {
     private helper: JwtHelperService,
     private auth: AuthService
   ) {}
+  public user;
   url = "http://51.89.139.24";
   getPollOnID(id: any): Observable<any> {
     return this.http.get<any>(`${this.url}/api/poll/${id}`);
   }
   addVote(pollID, optionID){
-    console.log(this.url,"/api/poll/",pollID,"/",optionID);
+    this.user = this.auth.getUser();
+    console.log(this.url,"/api/poll/add/","/",this.user["user"]["username"],"/",pollID,"/",optionID);
     this.http
       .patch(`${this.url}/api/poll/${pollID}/${optionID}`,{}).subscribe(
         res => { 
