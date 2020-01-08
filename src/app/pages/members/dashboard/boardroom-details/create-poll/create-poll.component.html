@@ -51,23 +51,20 @@
   </ion-col>
   <ion-col>
     Options
+    <div formArrayName="options">
+      <div class="option" *ngFor="let option of createPoll.get('options');
+               let optionIndex = index" [formGroupName]="optionIndex">
+               <ion-input type="text" formControlName='option'></ion-input>
+        <!--  div with formArrayName='players' goes here (see below) -->
+      </div>
+  </div>
     <div formGroupName="options">
-      <ion-item>
-        <ion-label position="floating">Option</ion-label>
-        <ion-input type="text" formControlName="title"></ion-input>
+      <div *ngFor="let list_item of [0,1,2,3]; let i=index" class="panel panel-default">
+        <ion-item formGroupName='{{i}}'>
+          <ion-label position="floating">Option</ion-label>
+        {{i + 1}}.) <ion-input type="text" formControlName='{{i}}'></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-label position="floating">Option</ion-label>
-        <ion-input type="text" formControlName="title"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Option</ion-label>
-        <ion-input type="text" formControlName="title"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Option</ion-label>
-        <ion-input type="text" formControlName="title"></ion-input>
-      </ion-item>
+      </div>
     </div>
     </ion-col>
   </ion-row>

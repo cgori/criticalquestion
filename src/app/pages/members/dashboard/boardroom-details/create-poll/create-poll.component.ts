@@ -3,7 +3,8 @@ import {
   FormGroup,
   FormBuilder,
   Validators,
-  ReactiveFormsModule
+  ReactiveFormsModule,
+  FormArray
 } from "@angular/forms";
 import { AuthService } from "../../../../../services/auth.service";
 import { Router } from "@angular/router";
@@ -43,15 +44,11 @@ export class CreatePollComponent implements OnInit {
         desc: [""],
         age: []
       }),
-      options: this.formBuilder.group({
-        title: [""],
-        votes: []
-      }),
+      options: this.formBuilder.group([[this.option]]),
       question: [""],
       description: [""],
       status: [""]
     });
-
 
     this.activatedRoute.paramMap.subscribe(paramMap => {
       if (!paramMap.has("boardroomId")) {
@@ -90,6 +87,15 @@ export class CreatePollComponent implements OnInit {
   }
   addUserToBoard(addedUser){
     this.authService.addUserToBoard(addedUser , this.boardroomId);
+  }
+  get option(): FormGroup {
+    return this.formBuilder.group({
+      option: "",
+      votes: []
+    });
+  }
+  addOption() {
+    (this.createPoll.get("option") as FormArray).push(this.option);
   }
 
 }
