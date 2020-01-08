@@ -1,10 +1,19 @@
 <ion-row>
-<ion-col>
-  <ion-button type="button" label="Click" (click)="createPollShow()" color= "success"> Create Poll</ion-button>
-</ion-col>
-<ion-col>
-  <ion-button type="button" label="Click" (click)="addUser()" color= "success"> Add user to Boardroom</ion-button>
-</ion-col>
+  <ion-col>
+    <ion-button
+      type="button"
+      label="Click"
+      (click)="createPollShow()"
+      color="success"
+    >
+      Create Poll</ion-button
+    >
+  </ion-col>
+  <ion-col>
+    <ion-button type="button" label="Click" (click)="addUser()" color="success">
+      Add user to Boardroom</ion-button
+    >
+  </ion-col>
 </ion-row>
 
 <ion-input *ngIf="this.show" type="text" value="" align-items-center>
@@ -12,71 +21,69 @@
     <ion-row>
       <ion-col>
         Question
-    <ion-item>
-      <ion-label position="floating">Question</ion-label>
-      <ion-input type="text" formControlName="question"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Status</ion-label>
-      <ion-input type="text" formControlName="status"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">description</ion-label>
-      <ion-input type="text" formControlName="description"></ion-input>
-    </ion-item>
+        <ion-item>
+          <ion-label position="floating">Question</ion-label>
+          <ion-input type="text" formControlName="question"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Status</ion-label>
+          <ion-input type="text" formControlName="status"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">description</ion-label>
+          <ion-input type="text" formControlName="description"></ion-input>
+        </ion-item>
       </ion-col>
       <ion-col>
         Patient Details
-    <div formGroupName="patient">
-      <ion-item>
-        <ion-label position="floating">Allergy</ion-label>
-        <ion-input type="text" formControlName="allergy"></ion-input>
-      </ion-item>
+        <div formGroupName="patient">
+          <ion-item>
+            <ion-label position="floating">Allergy</ion-label>
+            <ion-input type="text" formControlName="allergy"></ion-input>
+          </ion-item>
 
-      <ion-item>
-        <ion-label position="floating">Drugs</ion-label>
-        <ion-input type="text" formControlName="drugs"></ion-input>
-      </ion-item>
+          <ion-item>
+            <ion-label position="floating">Drugs</ion-label>
+            <ion-input type="text" formControlName="drugs"></ion-input>
+          </ion-item>
 
-      <ion-item>
-        <ion-label position="floating">Desc</ion-label>
-        <ion-input type="email" formControlName="desc"></ion-input>
-      </ion-item>
+          <ion-item>
+            <ion-label position="floating">Desc</ion-label>
+            <ion-input type="email" formControlName="desc"></ion-input>
+          </ion-item>
 
-      <ion-item>
-        <ion-label position="floating">Age</ion-label>
-        <ion-input type="number" formControlName="age"></ion-input>
-      </ion-item>
-    </div>
-  </ion-col>
-  <ion-col>
-    Options
-    <div formArrayName="options">
-      <div class="option" *ngFor="let option of createPoll.get('options');
-               let optionIndex = index" [formGroupName]="optionIndex">
-               <ion-input type="text" formControlName='option'></ion-input>
-        <!--  div with formArrayName='players' goes here (see below) -->
-      </div>
-  </div>
-    <div formGroupName="options">
-      <div *ngFor="let list_item of [0,1,2,3]; let i=index" class="panel panel-default">
-        <ion-item formGroupName='{{i}}'>
-          <ion-label position="floating">Option</ion-label>
-        {{i + 1}}.) <ion-input type="text" formControlName='{{i}}'></ion-input>
-      </ion-item>
-      </div>
-    </div>
-    </ion-col>
-  </ion-row>
+          <ion-item>
+            <ion-label position="floating">Age</ion-label>
+            <ion-input type="number" formControlName="age"></ion-input>
+          </ion-item>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div
+          formArrayName="options"
+          *ngFor="
+            let item of createPoll.get('options')['controls'];
+            let i = index
+          "
+        >
+          <div [formGroupName]="[i]">
+            <input formControlName="title" placeholder="Option title" />
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
     <ion-button expand="full" type="submit" [disabled]="!createPoll.valid"
       >Submit Poll</ion-button
     >
   </form>
 </ion-input>
 <ion-input *ngIf="this.show1" type="text" value="" align-items-center>
-<ion-list>
-  <ion-item *ngFor="let user of user.users" (click)="addUserToBoard(user._id)">
-    {{user.email}}
-  </ion-item>
-</ion-list>
+  <ion-list>
+    <ion-item
+      *ngFor="let user of user.users"
+      (click)="addUserToBoard(user._id)"
+    >
+      {{ user.email }}
+    </ion-item>
+  </ion-list>
 </ion-input>
