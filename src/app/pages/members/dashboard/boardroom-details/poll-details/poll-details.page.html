@@ -21,9 +21,11 @@
   <ion-list>
     <ion-item
       *ngFor="let item of polls.Poll?.options"
-      (click)="addVote(item._id)"
+      (click)="addVote(item._id, item)"
     >
-      Option: {{item.title}} Votes: {{item.votes}} <br />
+      Option: {{item.title}} <b> Votes:</b>
+      <p id="votes">{{item.votes}}</p>
+      <br />
     </ion-item>
   </ion-list>
 

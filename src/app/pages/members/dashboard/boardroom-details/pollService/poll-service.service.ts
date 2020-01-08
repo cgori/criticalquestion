@@ -22,13 +22,18 @@ export class PollServiceService {
     private alertController: AlertController
   ) {}
   public user;
+  public counter;
   url = "http://51.89.139.24";
   getPollOnID(id: any): Observable<any> {
     return this.http.get<any>(`${this.url}/api/poll/${id}`);
   }
-  addVote(pollID, optionID) {
+  addVote(pollID, optionID, counter): Boolean {
     this.user = this.auth.getUser();
+    console.log(pollID, "pollID");
+    console.log(optionID, "optionID");
     console.log(this.user);
+    this.counter = counter;
+
     this.http
       .patch(
         `${this.url}/api/poll/add/${this.user.user.username}/${pollID}/${optionID}`,
@@ -37,12 +42,15 @@ export class PollServiceService {
       .subscribe(
         res => {
           this.showAlertSuccess(res, "Vote submitted.");
+          return true;
         },
         error => {
           this.showAlertError(error, "You have already voted.");
+          return false;
         }
       );
     console.log("request sent. Waiting for response...");
+    return false;
   }
   async showAlertSuccess(msg, reason) {
     let alert = await this.alertController.create({
@@ -50,17 +58,7 @@ export class PollServiceService {
       header: "Success!",
       buttons: [
         {
-          text: "OK",
-          handler: data => {
-            var url = window.location.href;
-            if (url.indexOf("?") > -1) {
-              url += "&param=1";
-            } else {
-              url += "?param=1";
-            }
-            window.location.href = url;
-            window.location.reload();
-          }
+          text: "OK"
         }
       ]
     });

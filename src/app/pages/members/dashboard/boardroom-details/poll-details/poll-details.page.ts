@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { PollServiceService } from "../pollService/poll-service.service";
 import { FormGroup } from "@angular/forms";
+import { stringify } from "querystring";
 
 @Component({
   selector: "app-poll-details",
@@ -32,8 +33,14 @@ export class PollDetailsPage implements OnInit {
         .subscribe(data => (this.polls = data));
     });
   }
-  addVote(event: any) {
+  addVote(event: any, counter) {
     console.log(event, "is event");
-    this._pollService.addVote(this.pollID, event);
+    console.log(counter, "is counter");
+    let y = this._pollService.addVote(this.pollID, event, counter);
+    if (y) {
+      var score = parseInt(document.getElementById("votes").innerHTML);
+      score++;
+      document.getElementById("votes").innerHTML = String(score);
+    }
   }
 }
